@@ -44,16 +44,27 @@ header {
 }
 
 #cart {
+  #carrito {
   position: fixed;
-  bottom: 0;
+  top: 0;
   right: 0;
-  background: white;
-  border-top-left-radius: 12px;
-  border: 1px solid #ccc;
-  padding: 1rem;
-  max-width: 300px;
   width: 100%;
-  box-shadow: -2px -2px 10px rgba(0,0,0,0.1);
+  max-width: 340px;
+  height: 100vh;
+  background: #ffffff;
+  border-left: 2px solid #f783ac;
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  z-index: 999;
+  padding: 1rem;
+  font-size: 0.95rem;
+}
+
+#carrito p, #carrito .item {
+  word-wrap: break-word;
+  white-space: normal;
+  line-height: 1.3rem;
+}
 }
 
 .cart-item {
