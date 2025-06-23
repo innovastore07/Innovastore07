@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Innova Store - Tienda Online</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: Arial, sans-serif; margin: 0; background: #f5f5f5; color: #333; }
+    header { background: #111; color: white; padding: 20px; text-align: center; }
+    .container { padding: 20px; max-width: 1000px; margin: auto; }
+    .products { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
+    .product {
+      background: white; border-radius: 10px; border: 1px solid #ccc;
+      padding: 15px; width: 220px; text-align: center; box-shadow: 0 2px 6px #ddd;
+    }
+    .product img { width: 100%; border-radius: 5px; }
+    .btn {
+      background: #e63946; color: white; border: none; padding: 10px;
+      margin-top: 10px; cursor: pointer; border-radius: 5px; width: 100%;
+    }
+    .btn:hover { background: #d62828; }
+    #cart {
+      background: #fff; padding: 15px; margin-top: 30px;
+      border-radius: 10px; box-shadow: 0 0 10px #ddd;
+    }
+    .cart-item {
+      display: flex; justify-content: space-between;
+      border-bottom: 1px solid #eee; padding: 8px 0;
+    }
+    @media screen and (max-width: 600px) {
+      .product { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Innova Store</h1>
+  <p>¡Camisetas personalizadas a tu estilo! El límite lo pones tú.</p>
+</header>
+
+<div class="container">
+  <section class="products">
+    <div class="product">
+      <img src="https://via.placeholder.com/200x200?text=Camiseta+1" alt="Camiseta 1">
+      <h3>Camiseta Clásica</h3>
+      <p>$40.000</p>
+      <button class="btn" onclick="addToCart('Camiseta Clásica', 40000)">Agregar al carrito</button>
+    </div>
+    <div class="product">
+      <img src="https://via.placeholder.com/200x200?text=Camiseta+2" alt="Camiseta 2">
+      <h3>Camiseta Negra</h3>
+      <p>$45.000</p>
+      <button class="btn" onclick="addToCart('Camiseta Negra', 45000)">Agregar al carrito</button>
+    </div>
+    <div class="product">
+      <img src="https://via.placeholder.com/200x200?text=Camiseta+3" alt="Camiseta 3">
+      <h3>Camiseta Premium</h3>
+      <p>$55.000</p>
+      <button class="btn" onclick="addToCart('Camiseta Premium', 55000)">Agregar al carrito</button>
+    </div>
+  </section>
+
+  <section id="cart">
+    <h2>🛒 Carrito de Compras</h2>
+    <div id="cart-items"></div>
+    <p><strong>Total: $<span id="total">0</span></strong></p>
+
+    <button class="btn" onclick="checkoutWhatsApp()">📲 Enviar pedido por WhatsApp</button>
+    <button class="btn" onclick="checkoutWompi()">💳 Pagar con Wompi</button>
+  </section>
+</div>
+
+<script>
+  const cart = [];
+
+  function addToCart(name, price) {
+    cart.push({ name, price });
+    renderCart();
+  }
+
+  function renderCart() {
+    const cartItems = document.getElementById("cart-items");
+    cartItems.innerHTML = "";
+    let total = 0;
+    cart.forEach((item, index) => {
+      total += item.price;
+      cartItems.innerHTML += `
+        <div class="cart-item">
+          <span>${item.name}</span>
+          <span>$${item.price.toLocaleString()}</span>
+        </div>`;
+    });
+    document.getElementById("total").innerText = total.toLocaleString();
+  }
+
+  function checkoutWhatsApp() {
+    if (cart.length === 0) {
+      alert("Tu carrito está vacío.");
+      return;
+    }
+
+    let message = "¡Hola! Quiero hacer un pedido en Innova Store:%0A%0A";
+    let total = 0;
+
+    cart.forEach((item, index) => {
+      message += `${index + 1}. ${item.name} - $${item.price.toLocaleString()}%0A`;
+      total += item.price;
+    });
+
+    message += `%0ATotal: $${total.toLocaleString()}%0A%0AMi nombre es: ______%0AMi dirección es: ______`;
+
+    const phoneNumber = "573001234567"; // Reemplaza con tu número real
+    const url = `https://wa.me/${phoneNumber}?text=${message}`;
+    window.open(url, "_blank");
+  }
+
+  function checkoutWompi() {
+    if (cart.length === 0) {
+      alert("Tu carrito está vacío.");
+      return;
+    }
+
+    window.open("https://checkout.wompi.co/l/test_VPOS_YN7WCK", "_blank");
+  }
+</script>
+
+</body>
+</html>
