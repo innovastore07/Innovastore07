@@ -65,3 +65,32 @@ header {
 .cart-controls button {
   margin: 0 0.2rem;
 }
+
+#toggle-cart {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  padding: 1rem;
+  font-size: 1rem;
+  z-index: 1000;
+  cursor: pointer;
+}
+
+#cart.hidden {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  #cart {
+    max-width: 100%;
+    right: 0;
+    bottom: 60px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    padding-bottom: 2rem;
+  }
+}

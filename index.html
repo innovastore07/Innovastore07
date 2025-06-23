@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Innova Store - Prueba</title>
+  <title>Innova Store - Prueba Mejorada</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -37,7 +37,9 @@
     </div>
   </section>
 
-  <aside id="cart">
+  <button id="toggle-cart" onclick="toggleCart()">🛒 Ver carrito</button>
+
+  <aside id="cart" class="hidden">
     <h3>🛒 Carrito</h3>
     <div id="cart-items"></div>
     <p id="total"></p>

@@ -94,3 +94,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+
+
+function toggleCart() {
+  const cartEl = document.getElementById('cart');
+  cartEl.classList.toggle('hidden');
+}
