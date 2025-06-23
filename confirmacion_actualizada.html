@@ -1,0 +1,37 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Confirmación de Pago - Innova Store</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Confirmación de Pago</h1>
+    <p>Por favor, ingresa el valor exacto del total de tu compra para continuar al formulario de despacho.</p>
+    <input type="number" id="valorIngresado" placeholder="Escribe el total exacto sin puntos ni comas">
+    <button onclick="verificarPago()">Confirmar pago</button>
+    <p id="mensajeError" style="color: red; display: none;">❌ El valor no coincide. Verifica tu total antes de continuar.</p>
+  </div>
+
+  <script>
+    function obtenerTotalCarrito() {
+      return localStorage.getItem('totalCarrito') || "0";
+    }
+
+    function verificarPago() {
+      const valorUsuario = document.getElementById('valorIngresado').value.trim();
+      const valorCorrecto = obtenerTotalCarrito();
+
+      if (valorUsuario === valorCorrecto) {
+        // Redirige al formulario directamente
+        window.location.href = "formulario_despacho.html";
+      } else {
+        document.getElementById("mensajeError").style.display = "block";
+      }
+    }
+  </script>
+</body>
+</html>
