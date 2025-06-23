@@ -100,3 +100,24 @@ function toggleCart() {
   const cartEl = document.getElementById('cart');
   cartEl.classList.toggle('hidden');
 }
+
+function checkout() {
+  let total = 0;
+  let qty = 0;
+  cart.forEach(item => {
+    total += item.price * item.qty;
+    qty += item.qty;
+  });
+
+  if (qty >= 3) {
+    total *= 0.9;
+  }
+
+  if (total === 0) {
+    alert('El carrito está vacío. Agrega productos antes de pagar.');
+    return;
+  }
+
+  const wompiURL = "https://checkout.wompi.co/l/test_VPOS_YN7WCK?amount=" + Math.round(total);
+  window.location.href = wompiURL;
+}
