@@ -123,3 +123,11 @@ function checkout() {
   const wompiURL = "https://checkout.wompi.co/l/test_VPOS_YN7WCK?amount_in_cents=" + totalInCents + "&currency=COP";
   window.location.href = wompiURL;
 }
+
+function checkout() {
+  let total = 0;
+  let qty = 0;
+
+  localStorage.setItem("pedido", JSON.stringify(cart)); // guardamos carrito
+  window.location.href = "confirmacion.html";
+}

@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Confirmar Pedido - Innova Store</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="confirm-container">
+    <h1>Resumen de tu Pedido</h1>
+    <div id="order-summary"></div>
+    <p><strong>Total a pagar:</strong> $<span id="cart-total"></span></p>
+
+    <label for="confirm-amount">Confirma el valor a pagar:</label>
+    <input type="number" id="confirm-amount" placeholder="Escribe el total exacto">
+    <p id="error-msg" class="hidden">❗ El valor no coincide. Por favor verifica.</p>
+
+    <button onclick="confirmAndPay()">Ir a pagar con Wompi</button>
+  </main>
+
+  <script>
+    const order = JSON.parse(localStorage.getItem("pedido") || "[]");
+    const resumen = document.getElementById("order-summary");
+    const totalSpan = document.getElementById("cart-total");
+
+    let total = 0;
+    let cantidad = 0;
+
+    order.forEach(item => {
+      const subtotal = item.price * item.qty;
+      resumen.innerHTML += `<p>${item.qty}x ${item.name} (${item.type}, Talla ${item.size}) - $${subtotal.toLocaleString()}</p>`;
+      total += subtotal;
+      cantidad += item.qty;
+    });
+
+    if (cantidad >= 3) {
+      total *= 0.9;
+    }
+
+    total = Math.round(total);
+    totalSpan.textContent = total.toLocaleString();
+
+    function confirmAndPay() {
+      const valorIngresado = parseInt(document.getElementById("confirm-amount").value);
+      const errorMsg = document.getElementById("error-msg");
+
+      if (valorIngresado !== total) {
+        errorMsg.classList.remove("hidden");
+        return;
+      }
+
+      errorMsg.classList.add("hidden");
+      window.location.href = "https://checkout.wompi.co/l/test_VPOS_YN7WCK";
+    }
+  </script>
+</body>
+</html>

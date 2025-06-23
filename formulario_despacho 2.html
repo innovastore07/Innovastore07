@@ -1,0 +1,157 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Formulario de Despacho - Innova Store</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 1.5rem;
+      background-color: #f9f9f9;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    form {
+      max-width: 600px;
+      margin: auto;
+      background: #fff;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+    input, select {
+      width: 100%;
+      padding: 0.6rem;
+      font-size: 1rem;
+      margin-top: 0.5rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    .radio-group {
+      display: flex;
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+    button {
+      margin-top: 1.5rem;
+      padding: 0.8rem 1.2rem;
+      background-color: #f783ac;
+      border: none;
+      color: white;
+      font-size: 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <h1>Formulario de Despacho</h1>
+  <form id="form-despacho">
+    <label>Nombre completo:</label>
+    <input type="text" id="nombre" required>
+    <label>Cédula:</label>
+    <input type="text" id="cedula" required>
+    <label>Teléfono:</label>
+    <input type="text" id="telefono" required>
+
+    <label>¿Cómo desea recibir su pedido?</label>
+    <div class="radio-group">
+      <label><input type="radio" name="envio" value="domicilio" checked> Envío a domicilio</label>
+      <label><input type="radio" name="envio" value="recoge"> Recoger en tienda</label>
+    </div>
+
+    <div id="direccion-fields">
+      <label>Dirección:</label>
+      <input type="text" id="direccion">
+      <label>Ciudad:</label>
+      <input type="text" id="ciudad">
+      <label>Departamento:</label>
+      <input type="text" id="departamento">
+    </div>
+
+    <button type="button" onclick="generarPDF()">Generar comprobante PDF</button>
+  </form>
+
+  <script>
+    const direccionFields = document.getElementById("direccion-fields");
+    document.querySelectorAll("input[name='envio']").forEach(el => {
+      el.addEventListener("change", e => {
+        direccionFields.style.display = e.target.value === "domicilio" ? "block" : "none";
+      });
+    });
+
+    async function generarPDF() {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+
+      const nombre = document.getElementById("nombre").value;
+      const cedula = document.getElementById("cedula").value;
+      const telefono = document.getElementById("telefono").value;
+      const envio = document.querySelector("input[name='envio']:checked").value;
+      const direccion = document.getElementById("direccion").value;
+      const ciudad = document.getElementById("ciudad").value;
+      const departamento = document.getElementById("departamento").value;
+      const carrito = JSON.parse(localStorage.getItem("pedido") || "[]");
+
+      let total = 0;
+      let productos = "";
+      let cantidad = 0;
+
+      carrito.forEach(item => {
+        const subtotal = item.price * item.qty;
+        cantidad += item.qty;
+        productos += `- ${item.qty}x ${item.name} (${item.type}, Talla ${item.size}) - $${subtotal.toLocaleString()}
+`;
+        total += subtotal;
+      });
+
+      if (cantidad >= 3) {
+        total *= 0.9;
+      }
+
+      total = Math.round(total);
+
+      doc.setFontSize(16);
+      doc.text("Innova Store - Confirmación de Pedido", 20, 20);
+      doc.setFontSize(12);
+      doc.text(`Nombre: ${nombre}`, 20, 35);
+      doc.text(`Cédula: ${cedula}`, 20, 42);
+      doc.text(`Teléfono: ${telefono}`, 20, 49);
+      doc.text(`Tipo de entrega: ${envio === "domicilio" ? "Envío a domicilio" : "Recoger en tienda"}`, 20, 56);
+      if (envio === "domicilio") {
+        doc.text(`Dirección: ${direccion}`, 20, 63);
+        doc.text(`Ciudad: ${ciudad}`, 20, 70);
+        doc.text(`Departamento: ${departamento}`, 20, 77);
+      }
+
+      doc.text("Productos:", 20, envio === "domicilio" ? 85 : 63);
+      doc.setFont("courier", "normal");
+      doc.setFontSize(11);
+      doc.text(productos, 20, envio === "domicilio" ? 92 : 70);
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(12);
+      doc.text(`Total pagado: $${total.toLocaleString()}`, 20, 250);
+      doc.setFont("helvetica", "normal");
+      doc.text("Por favor adjunta el soporte de pago cuando envíes este comprobante.", 20, 260);
+
+      const logo = new Image();
+      logo.src = "imagenes/logo_innova.png";
+      logo.onload = () => {
+        doc.addImage(logo, "PNG", 150, 10, 40, 20);
+        doc.save("Comprobante_Innova_Store.pdf");
+      };
+    }
+  </script>
+</body>
+</html>
