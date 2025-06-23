@@ -1,198 +1,48 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Innova Store</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Innova Store - Prueba</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
     <h1>Innova Store</h1>
-    <nav>
-      <ul class="menu">
-        <li class="dropdown">Camisetas
-          <ul class="submenu">
-            <li><a href="#camisetas-hombre">Hombre</a></li>
-            <li><a href="#camisetas-dama">Dama</a></li>
-            <li><a href="#camisetas-nino">Niño</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">Camisetas piel de durazno
-          <ul class="submenu">
-            <li><a href="#piel-hombre">Hombre</a></li>
-            <li><a href="#piel-dama">Dama</a></li>
-            <li><a href="#piel-nino">Niño</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">Conjuntos
-          <ul class="submenu">
-            <li><a href="#conjuntos-hombre">Hombre</a></li>
-            <li><a href="#conjuntos-dama">Dama</a></li>
-            <li><a href="#conjuntos-nino">Niño</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">Buzos
-          <ul class="submenu">
-            <li><a href="#buzos-hombre">Hombre</a></li>
-            <li><a href="#buzos-dama">Dama</a></li>
-            <li><a href="#buzos-nino">Niño</a></li>
-          </ul>
-        </li>
-        <li><a href="#">Mugs</a></li>
-        <li><a href="#">Gorras</a></li>
-      </ul>
-    </nav>
   </header>
-  <main>
-    <section id="piel-hombre" class="product-section">
-  <h2>Camisetas piel de durazno - Hombre</h2>
 
-  <div class="product-card">
-    <img src="images/hombre_1.jpg" alt="Blanco">
-    <p>Blanco - $12.000</p>
-  </div>
+  <section class="product-section">
+    <h2>Camiseta Piel de Durazno - Hombre (Prueba)</h2>
+    <div class="product-card">
+      <img src="images/hombre_1.jpg" alt="Camiseta Blanca Hombre">
+      <div class="details">
+        <p>Color: Blanco</p>
+        <label for="type">Tipo:</label>
+        <select id="type">
+          <option value="hombre" selected>Hombre</option>
+          <option value="dama">Dama</option>
+          <option value="niño">Niño</option>
+        </select>
+        <label for="size">Talla:</label>
+        <select id="size">
+          <option value="S">S</option>
+          <option value="M">M</option>
+          <option value="L">L</option>
+          <option value="XL">XL</option>
+          <option value="2XL">2XL</option>
+        </select>
+        <button onclick="addToCart()">Agregar al carrito</button>
+      </div>
+    </div>
+  </section>
 
-  <div class="product-card">
-    <img src="images/hombre_2.jpg" alt="Rojo">
-    <p>Rojo - $12.000</p>
-  </div>
+  <aside id="cart">
+    <h3>🛒 Carrito</h3>
+    <div id="cart-items"></div>
+    <p id="total"></p>
+  </aside>
 
-  <div class="product-card">
-    <img src="images/hombre_3.jpg" alt="Azul rey">
-    <p>Azul rey - $12.000</p>
-  </div>
-
-  <div class="product-card">
-    <img src="images/hombre_4.jpg" alt="Verde Cali">
-    <p>Verde Cali - $12.000</p>
-  </div>
-
-  <div class="product-card">
-    <img src="images/hombre_5.jpg" alt="Gris jaspe">
-    <p>Gris jaspe - $12.000</p>
-  </div>
-
-  <div class="product-card">
-    <img src="images/hombre_6.jpg" alt="Gris plomo">
-    <p>Gris plomo - $12.000</p>
-  </div>
-
-  <div class="product-card">
-    <img src="images/hombre_7.jpg" alt="Negro">
-    <p>Negro - $12.000</p>
-  </div>
-
-  <div class="product-card">
-    <img src="images/hombre_8.jpg" alt="Verde agua">
-    <p>Verde agua - $12.000</p>
-  </div>
-
-  <div class="product-card">
-    <img src="images/hombre_9.jpg" alt="Amarillo">
-    <p>Amarillo - $12.000</p>
-  </div>
-</section>
-    </section>
-    <section id="piel-dama" class="product-section">
-  <h2>Camisetas piel de durazno - Dama</h2>
-
-  <div class="product-card">
-    <img src="images/dama_1.jpg" alt="Blanco">
-    <p>Blanco - $12.000</p>
-  </div>
-
-  <div class="product-card">
-    <img src="images/dama_2.jpg" alt="Rojo">
-    <p>Rojo - $12.000</p>
-  </div>
-
-  <div class="product-card">
-    <img src="images/dama_3.jpg" alt="Azul rey">
-    <p>Azul rey - $12.000</p>
-  </div>
-
-  <div class="product-card">
-    <img src="images/dama_4.jpg" alt="Verde Cali">
-    <p>Verde Cali - $12.000</p>
-  </div>
-
-  <div class="product-card">
-    <img src="images/dama_5.jpg" alt="Gris jaspe">
-    <p>Gris jaspe - $12.000</p>
-  </div>
-
-  <div class="product-card">
-    <img src="images/dama_6.jpg" alt="Gris plomo">
-    <p>Gris plomo - $12.000</p>
-  </div>
-
-  <div class="product-card">
-    <img src="images/dama_7.jpg" alt="Negro">
-    <p>Negro - $12.000</p>
-  </div>
-
-  <div class="product-card">
-    <img src="images/dama_8.jpg" alt="Verde agua">
-    <p>Verde agua - $12.000</p>
-  </div>
-
-  <div class="product-card">
-    <img src="images/dama_9.jpg" alt="Amarillo">
-    <p>Amarillo - $12.000</p>
-  </div>
-</section>
-    </section>
-    <section id="piel-nino" class="product-section">
-  <h2>Camisetas piel de durazno - Niño</h2>
-
-  <div class="product-card">
-    <img src="images/nino_1.jpg" alt="Blanco">
-    <p>Blanco - $10.000</p>
-  </div>
-
-  <div class="product-card">
-    <img src="images/nino_2.jpg" alt="Rojo">
-    <p>Rojo - $10.000</p>
-  </div>
-
-  <div class="product-card">
-    <img src="images/nino_3.jpg" alt="Azul rey">
-    <p>Azul rey - $10.000</p>
-  </div>
-
-  <div class="product-card">
-    <img src="images/nino_4.jpg" alt="Verde Cali">
-    <p>Verde Cali - $10.000</p>
-  </div>
-
-  <div class="product-card">
-    <img src="images/nino_5.jpg" alt="Gris jaspe">
-    <p>Gris jaspe - $10.000</p>
-  </div>
-
-  <div class="product-card">
-    <img src="images/nino_6.jpg" alt="Gris plomo">
-    <p>Gris plomo - $10.000</p>
-  </div>
-
-  <div class="product-card">
-    <img src="images/nino_7.jpg" alt="Negro">
-    <p>Negro - $10.000</p>
-  </div>
-
-  <div class="product-card">
-    <img src="images/nino_8.jpg" alt="Verde agua">
-    <p>Verde agua - $10.000</p>
-  </div>
-
-  <div class="product-card">
-    <img src="images/nino_9.jpg" alt="Amarillo">
-    <p>Amarillo - $10.000</p>
-  </div>
-</section>
-  </main>
-  <a href="https://wa.me/573125128432?text=¡Hola!%20Vi%20una%20camiseta%20en%20Innova%20Store%20y%20quiero%20más%20información." 
-     class="whatsapp-float" target="_blank" title="Chatea con nosotros">💬</a>
+  <script src="script.js"></script>
 </body>
 </html>
