@@ -2,50 +2,180 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Innova Store - Carrito Mejorado</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Innova Store</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
     <h1>Innova Store</h1>
+    <nav>
+      <ul>
+        <li><a href="#piel-hombre">Camisetas piel de durazno - Hombre</a></li>
+        <li><a href="#piel-dama">Camisetas piel de durazno - Dama</a></li>
+        <li><a href="#piel-nino">Camisetas piel de durazno - Niño</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <section class="product-section">
-    <h2>Camiseta Piel de Durazno - Hombre (Prueba)</h2>
-    <div class="product-card">
-      <img src="images/hombre_1.jpg" alt="Camiseta Blanca Hombre">
-      <div class="details">
-        <p>Color: Blanco</p>
-        <label for="type">Tipo:</label>
-        <select id="type">
-          <option value="hombre" selected>Hombre</option>
-          <option value="dama">Dama</option>
-          <option value="niño">Niño</option>
-        </select>
-        <label for="size">Talla:</label>
-        <select id="size">
-          <option value="S">S</option>
-          <option value="M">M</option>
-          <option value="L">L</option>
-          <option value="XL">XL</option>
-          <option value="2XL">2XL</option>
-        </select>
-        <button onclick="addToCart()">Agregar al carrito</button>
+  <main>
+    <section id="piel-hombre" class="product-section">
+      <h2>Camisetas piel de durazno - Hombre</h2>
+      <div class="product-grid">
+        <!-- 9 imágenes -->
+        
+        <div class="product-card">
+          <img src="imagenes/hombre_1.jpg" alt="Hombre 1">
+          <p>$12.000</p>
+        </div>
+        
+        <div class="product-card">
+          <img src="imagenes/hombre_2.jpg" alt="Hombre 2">
+          <p>$12.000</p>
+        </div>
+        
+        <div class="product-card">
+          <img src="imagenes/hombre_3.jpg" alt="Hombre 3">
+          <p>$12.000</p>
+        </div>
+        
+        <div class="product-card">
+          <img src="imagenes/hombre_4.jpg" alt="Hombre 4">
+          <p>$12.000</p>
+        </div>
+        
+        <div class="product-card">
+          <img src="imagenes/hombre_5.jpg" alt="Hombre 5">
+          <p>$12.000</p>
+        </div>
+        
+        <div class="product-card">
+          <img src="imagenes/hombre_6.jpg" alt="Hombre 6">
+          <p>$12.000</p>
+        </div>
+        
+        <div class="product-card">
+          <img src="imagenes/hombre_7.jpg" alt="Hombre 7">
+          <p>$12.000</p>
+        </div>
+        
+        <div class="product-card">
+          <img src="imagenes/hombre_8.jpg" alt="Hombre 8">
+          <p>$12.000</p>
+        </div>
+        
+        <div class="product-card">
+          <img src="imagenes/hombre_9.jpg" alt="Hombre 9">
+          <p>$12.000</p>
+        </div>
+        
       </div>
-    </div>
-  </section>
+    </section>
 
-  <button id="toggle-cart" onclick="toggleCart()">🛒</button>
+    <section id="piel-dama" class="product-section">
+      <h2>Camisetas piel de durazno - Dama</h2>
+      <div class="product-grid">
+        
+        <div class="product-card">
+          <img src="imagenes/dama_1.jpg" alt="Dama 1">
+          <p>$12.000</p>
+        </div>
+        
+        <div class="product-card">
+          <img src="imagenes/dama_2.jpg" alt="Dama 2">
+          <p>$12.000</p>
+        </div>
+        
+        <div class="product-card">
+          <img src="imagenes/dama_3.jpg" alt="Dama 3">
+          <p>$12.000</p>
+        </div>
+        
+        <div class="product-card">
+          <img src="imagenes/dama_4.jpg" alt="Dama 4">
+          <p>$12.000</p>
+        </div>
+        
+        <div class="product-card">
+          <img src="imagenes/dama_5.jpg" alt="Dama 5">
+          <p>$12.000</p>
+        </div>
+        
+        <div class="product-card">
+          <img src="imagenes/dama_6.jpg" alt="Dama 6">
+          <p>$12.000</p>
+        </div>
+        
+        <div class="product-card">
+          <img src="imagenes/dama_7.jpg" alt="Dama 7">
+          <p>$12.000</p>
+        </div>
+        
+        <div class="product-card">
+          <img src="imagenes/dama_8.jpg" alt="Dama 8">
+          <p>$12.000</p>
+        </div>
+        
+        <div class="product-card">
+          <img src="imagenes/dama_9.jpg" alt="Dama 9">
+          <p>$12.000</p>
+        </div>
+        
+      </div>
+    </section>
 
-  <aside id="cart" class="hidden">
-    <h3>🛒 Carrito</h3>
-    <div id="cart-items"></div>
-    <p id="total"></p>
-    <button id="checkout-btn" onclick="checkout()">Pagar</button>
-  </aside>
-
-  <script src="script.js"></script>
+    <section id="piel-nino" class="product-section">
+      <h2>Camisetas piel de durazno - Niño</h2>
+      <div class="product-grid">
+        
+        <div class="product-card">
+          <img src="imagenes/nino_1.jpg" alt="Nino 1">
+          <p>$10.000</p>
+        </div>
+        
+        <div class="product-card">
+          <img src="imagenes/nino_2.jpg" alt="Nino 2">
+          <p>$10.000</p>
+        </div>
+        
+        <div class="product-card">
+          <img src="imagenes/nino_3.jpg" alt="Nino 3">
+          <p>$10.000</p>
+        </div>
+        
+        <div class="product-card">
+          <img src="imagenes/nino_4.jpg" alt="Nino 4">
+          <p>$10.000</p>
+        </div>
+        
+        <div class="product-card">
+          <img src="imagenes/nino_5.jpg" alt="Nino 5">
+          <p>$10.000</p>
+        </div>
+        
+        <div class="product-card">
+          <img src="imagenes/nino_6.jpg" alt="Nino 6">
+          <p>$10.000</p>
+        </div>
+        
+        <div class="product-card">
+          <img src="imagenes/nino_7.jpg" alt="Nino 7">
+          <p>$10.000</p>
+        </div>
+        
+        <div class="product-card">
+          <img src="imagenes/nino_8.jpg" alt="Nino 8">
+          <p>$10.000</p>
+        </div>
+        
+        <div class="product-card">
+          <img src="imagenes/nino_9.jpg" alt="Nino 9">
+          <p>$10.000</p>
+        </div>
+        
+      </div>
+    </section>
+  </main>
 </body>
 </html>
