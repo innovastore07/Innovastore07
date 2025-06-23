@@ -118,6 +118,8 @@ function checkout() {
     return;
   }
 
-  const wompiURL = "https://checkout.wompi.co/l/test_VPOS_YN7WCK?amount=" + Math.round(total);
+  // Convertimos pesos a centavos
+  const totalInCents = Math.round(total) * 100;
+  const wompiURL = "https://checkout.wompi.co/l/test_VPOS_YN7WCK?amount_in_cents=" + totalInCents + "&currency=COP";
   window.location.href = wompiURL;
 }
